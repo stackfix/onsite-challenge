@@ -1,3 +1,7 @@
-import { createTRPCRouter } from "../../trpc";
+import { createTRPCRouter, publicProcedure } from "../../trpc";
 
-export const productRouter = createTRPCRouter({});
+export const productRouter = createTRPCRouter({
+  getAll: publicProcedure.query(
+    async ({ ctx }) => await ctx.prisma.product.findMany(),
+  ),
+});
